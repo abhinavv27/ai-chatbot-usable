@@ -74,47 +74,129 @@ graph TD
 
 ## 🚦 Getting Started
 
-### Prerequisites
+### 📦 Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) & [Docker Compose](https://docs.docker.com/compose/install/) (v2.14+)
-- Python 3.10+ (if running natively)
-- Node.js 18+ (if running frontend natively)
+Before you begin, ensure you have the following installed on your system:
 
-### Quick Start (Recommended)
+#### Essential
+- **Git**: [Download Git](https://git-scm.com/downloads) (Required for cloning the repo).
+- **Docker & Docker Compose**: [Get Docker Desktop](https://www.docker.com/products/docker-desktop/) (v2.14+ recommended). This is the easiest way to run the full stack.
 
-The fastest way to get the framework running is using Docker Compose.
+#### For Manual/Development Mode
+- **Python 3.10 or higher**: [Download Python](https://www.python.org/downloads/). Ensure you check "Add Python to PATH" during installation.
+- **Node.js 18 or higher**: [Download Node.js](https://nodejs.org/).
+- **MongoDB**: [Download Community Edition](https://www.mongodb.com/try/download/community) (If not using Docker).
 
-1. **Clone the repository:**
-   ```bash
+---
+
+### ⚡ Quick Start (Using Docker)
+
+This method gets everything (Backend, Frontend, MongoDB) up and running in a single command.
+
+#### Using Windows (PowerShell / CMD)
+1. **Open PowerShell as Administrator** and navigate to your workspace.
+2. **Clone the repository:**
+   ```powershell
    git clone https://github.com/abhinavv27/ai-chatbot-usable.git
    cd ai-chatbot-usable
    ```
-
-2. **Start the services:**
-   ```bash
+3. **Fire up the services:**
+   ```powershell
    docker-compose up -d
    ```
+4. **Access the Admin Panel**: Open `http://localhost:8080` in your browser.
 
-3. **Access the platform:**
-   - **Admin Dashboard**: [http://localhost:8080](http://localhost:8080)
-   - **Backend API Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+#### Using Git Bash / Linux / macOS
+1. **Open your terminal** and run:
+   ```bash
+   git clone https://github.com/abhinavv27/ai-chatbot-usable.git
+   cd ai-chatbot-usable
+   docker-compose up -d
+   ```
+2. **Done!** Access the dashboard at `http://localhost:8080`.
 
-### Manual Setup (Development)
+---
 
-#### Backend Setup
+### 🛠️ Manual Installation (For Developers)
+
+If you prefer to run the services individually without Docker, follow these steps:
+
+#### 1. Setup Backend (Python)
+Open a new terminal (CMD or Git Bash) from the project root:
+
 ```bash
 cd app
+# Create a virtual environment (optional but recommended)
+python -m venv venv
+
+# Activate Virtual Env:
+# Windows (CMD): venv\Scripts\activate
+# Windows (Git Bash/Linux): source venv/bin/activate
+
+# Install dependencies:
 pip install -r ../requirements.txt
-# Configure .env variables
-python main.py
+
+# Create your .env file:
+cp .env.example .env # or create a new file named .env
 ```
 
-#### Frontend Setup
+#### 2. Configure API Keys
+The framework supports LLM-powered features. To enable them, you must provide an API key. Open the `.env` file in the `app/` folder and edit the following:
+
+| Key | Description | Where to get it |
+| --- | --- | --- |
+| `OPENAI_API_KEY` | Required for Zero-shot NLU/LLM features | [OpenAI Dashboard](https://platform.openai.com/api-keys) |
+| `MONGODB_HOST` | Connection string for MongoDB | Default is `mongodb://localhost:27017` |
+| `APPLICATION_ENV` | Run mode | `Development`, `Production`, or `Testing` |
+
+#### 3. Start Backend
+```bash
+# From app/ directory
+python main.py
+```
+Backend will be available at `http://localhost:8000`.
+
+#### 4. Setup Frontend (React)
+Open a **separate** terminal from the project root:
+
 ```bash
 cd frontend
+# Install packages
 npm install
+
+# Run the dev server
 npm run dev
 ```
+Frontend will be available at `http://localhost:3000`.
+
+---
+
+## 🏗️ Architecture
+
+The framework is built with a decoupled architecture to ensure scalability and ease of integration.
+
+```mermaid
+graph TD
+    User((User)) -->|Interacts| Channel[Channels: Web/FB/Slack]
+    Channel -->|REST API| Backend[FastAPI Backend]
+    Backend -->|NLU Processing| Spacy(Spacy / ML Models)
+    Backend -->|Storage| MongoDB[(MongoDB)]
+    Backend -->|LLM Calls| OpenAI[OpenAI API / Local LLM]
+    
+    AdminUser((Admin)) -->|Manages| AdminUI[React/NextJS Admin Panel]
+    AdminUI -->|Configures| Backend
+```
+
+## 🛠️ Tech Stack
+
+- **Backend**: Python 3.10+, FastAPI, Pydantic, Motor (Async MongoDB).
+- **Frontend**: React, Next.js, Tailwind CSS, TypeScript.
+- **Machine Learning**: 
+  - **NLU**: Spacy, python-crfsuite.
+  - **ML**: Scikit-learn, TensorFlow/Keras.
+  - **Orchestration**: LangChain.
+- **Database**: MongoDB.
+- **Infrastructure**: Docker, Docker Compose, Kubernetes (Helm).
 
 ## 📖 Documentation
 
