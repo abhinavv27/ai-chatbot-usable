@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.ibb.co/vLR1wpG/logo.png" width="350"/>
+  <img src="./docs/assets/logo.png" width="350"/>
 </p>
 
 <p align="center">
@@ -7,7 +7,6 @@
 </p>
 
 <p align="center">
-  <a href="https://gitter.im/ai-chatbot-framework/Lobby"><img src="https://badges.gitter.im/ai-chatbot-framework/Lobby.svg" alt="Gitter"></a>
   <a href="https://github.com/abhinavv27/ai-chatbot-usable/actions"><img src="https://github.com/abhinavv27/ai-chatbot-usable/actions/workflows/evaluate-backend.yml/badge.svg" alt="Backend Build"></a>
   <a href="https://github.com/abhinavv27/ai-chatbot-usable/actions"><img src="https://github.com/abhinavv27/ai-chatbot-usable/actions/workflows/evaluate-frontend.yml/badge.svg" alt="Frontend Build"></a>
   <a href="License.txt"><img src="https://img.shields.io/github/license/abhinavv27/ai-chatbot-usable" alt="License"></a>
@@ -20,6 +19,20 @@
 AI Chatbot Framework is a comprehensive platform designed to empower developers and businesses to create, train, and deploy sophisticated AI chatbots with minimal coding effort. 
 
 Unlike black-box commercial solutions, this framework is **fully self-hosted**, giving you 100% ownership of your data and conversational logic. Whether you're building a simple FAQ bot or a complex multi-turn conversational agent, this tool provides the building blocks you need.
+
+## 📸 Preview
+
+### Admin Dashboard & Chat
+![Admin Chat](./docs/screenshots/admin_chat_screenshot.png)
+
+### Intent & Entity Training
+<p align="center">
+  <img src="./docs/screenshots/intent_configuration_1.png" width="45%" />
+  <img src="./docs/screenshots/training_entity_label.png" width="45%" />
+</p>
+
+### Bot Testing
+![Testing](./docs/screenshots/testing.png)
 
 ## ✨ Key Features
 
@@ -113,9 +126,24 @@ Dive deeper into the features and configuration:
 - 🔗 [Channel Integrations](docs/04-integrating-with-channels.md)
 - 🏗️ [Full Architecture](docs/05-architecture.md)
 
+## 🤝 Contributing
+
+We welcome contributions from the community! Whether it's fixing bugs, adding features, or improving documentation.
+
+1. Fork the repo.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+Check our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [License.txt](License.txt) file for details.
 
 ---
+
+<p align="center">
+  Built with ❤️ for the open-source community.
+</p>
